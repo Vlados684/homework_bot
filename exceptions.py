@@ -5,8 +5,7 @@ class GetStatusException(Exception):
 
 class HomeworkServiceError(Exception):
     """.
-    Базовый класс исключений для ошибок, возникающих при взаимодействии с
-    сервисом Практикум.Домашка.
+    Класс исключений для ошибок.
     """
     pass
 
@@ -14,10 +13,6 @@ class HomeworkServiceError(Exception):
 class WrongStatusError(HomeworkServiceError):
     """
     Исключение возникает в случае, если в ответе получен не предусмотренный
-    словарем `UPDATE_MESSAGES` статус работы.
+    словарем статус работы.
     """
-    pass
-
-
-class NotCriticalError(Exception):
     pass
