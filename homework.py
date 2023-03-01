@@ -10,7 +10,7 @@ import telegram
 from dotenv import load_dotenv
 
 from exceptions import (
-    WrongStatusError, GetStatusException, NotCriticalError
+    WrongStatusError, GetStatusException
 )
 
 logger = logging.getLogger(__name__)
@@ -84,9 +84,9 @@ def check_response(response):
 
 
 def parse_status(homework):
-    """
-    Функция извлекает статус работы из ответа и возвращает
-    строку для отправки пользователю.
+    """.
+    Функция извлекает статус работы из ответа и
+    возвращаетстроку для отправки пользователю.
     """
     homework_name = homework.get('homework_name')
     homework_status = homework.get('status')
@@ -101,9 +101,7 @@ def parse_status(homework):
 
 
 def get_timestamp(report) -> int:
-    """
-    Функция возвращает время последнего изменения статуса.
-    """
+    """Функция возвращает время последнего изменения статуса."""
     report_update_date = report.get('date_updated')
     report_update_datetime = datetime.strptime(
         report_update_date, '%Y-%m-%dT%H:%M:%SZ'
