@@ -16,3 +16,7 @@ class WrongStatusError(HomeworkServiceError):
     словарем статус работы.
     """
     pass
+
+
+class GetAPIAnswerException(Exception):
+    pass
