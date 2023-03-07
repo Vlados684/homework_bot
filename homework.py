@@ -2,7 +2,6 @@ import logging
 import os
 import sys
 import time
-from datetime import datetime
 from http import HTTPStatus
 import exceptions
 import requests
@@ -33,7 +32,7 @@ def check_tokens():
     """Проверка доступности необходимых переменных окружения."""
     tokens_exist = PRACTICUM_TOKEN and TELEGRAM_TOKEN and TELEGRAM_CHAT_ID
     return tokens_exist
- 
+
 
 def send_message(bot, message):
     """Отправляет сообщение в telegram."""
