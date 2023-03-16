@@ -43,7 +43,6 @@ def send_message(bot, message):
         logger.error(message)
     else:
         logger.debug(f'Бот отправил сообщение: {message}')
-    return True
 
 
 def get_api_answer(timestamp):
@@ -76,7 +75,7 @@ def check_response(response):
     """Проверка ответа API на корректность."""
     if not isinstance(response, dict):
         raise TypeError('Ответ API не является словарем')
-    if 'homeworks' not in response:
+    if response.get('homeworks') is None:
         raise KeyError('Отсутствует ключ "homework_name" в ответе API')
     homeworks = response['homeworks']
     if not isinstance(homeworks, list):
@@ -110,9 +109,9 @@ def main():
     current_status = ''
     current_error = ''
     while True:
-        timestamp = int(time.time())
+        current_timestamp = int(time.time())
         try:
-            response = get_api_answer(timestamp)
+            response = get_api_answer(current_timestamp)
             homework = check_response(response)
             if not len(homework):
                 logger.info('Статус не обновлен')
