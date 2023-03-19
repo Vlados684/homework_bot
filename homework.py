@@ -42,7 +42,7 @@ def send_message(bot, message):
         message = f'Не удалось отправить сообщение - {error}'
         logger.error(message)
     else:
-        logger.debug(f'Бот отправил сообщение: {message}')
+        logger.debug(f'{message}')
 
 
 def get_api_answer(timestamp):
@@ -57,17 +57,14 @@ def get_api_answer(timestamp):
         )
     except Exception as error:
         message = f'Эндпоинт {ENDPOINT} недоступен: {error}'
-        logger.error(message)
         raise exceptions.GetAPIAnswerException(message)
     if homework_statuses.status_code != HTTPStatus.OK:
         message = f'Код ответа API: {homework_statuses.status_code}'
-        logger.error(message)
         raise exceptions.GetAPIAnswerException(message)
     try:
         return homework_statuses.json()
     except Exception as error:
         message = f'Ошибка преобразования к формату json: {error}'
-        logger.error(message)
         raise exceptions.GetAPIAnswerException(message)
 
 
@@ -106,6 +103,7 @@ def main():
         logger.critical('Отсутствуют переменные окружения')
         sys.exit('Отсутствуют переменные окружения')
     bot = telegram.Bot(token=TELEGRAM_TOKEN)
+    current_timestamp = 0
     current_status = ''
     current_error = ''
     while True:
