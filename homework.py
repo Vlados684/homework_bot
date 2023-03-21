@@ -30,7 +30,7 @@ HOMEWORK_VERDICTS = {
 
 def check_tokens():
     """Проверка доступности необходимых переменных окружения."""
-    tokens_exist = PRACTICUM_TOKEN and TELEGRAM_TOKEN and TELEGRAM_CHAT_ID 
+    tokens_exist = PRACTICUM_TOKEN and TELEGRAM_TOKEN and TELEGRAM_CHAT_ID
     return tokens_exist
 
 
@@ -42,7 +42,7 @@ def send_message(bot, message):
         message = f'Не удалось отправить сообщение - {error}'
         logger.error(message)
     else:
-        logger.debug(f'Сообщение отправлено!')
+        logger.debug('Сообщение отправлено!')
 
 
 def get_api_answer(timestamp):
