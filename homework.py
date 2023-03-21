@@ -30,7 +30,7 @@ HOMEWORK_VERDICTS = {
 
 def check_tokens():
     """Проверка доступности необходимых переменных окружения."""
-    tokens_exist = PRACTICUM_TOKEN and TELEGRAM_TOKEN and TELEGRAM_CHAT_ID
+    tokens_exist = PRACTICUM_TOKEN and TELEGRAM_TOKEN and TELEGRAM_CHAT_ID 
     return tokens_exist
 
 
@@ -42,12 +42,11 @@ def send_message(bot, message):
         message = f'Не удалось отправить сообщение - {error}'
         logger.error(message)
     else:
-        logger.debug(f'{message}')
+        logger.debug(f'Сообщение отправлено!')
 
 
 def get_api_answer(timestamp):
     """Делает запрос к эндпоинту API."""
-    timestamp = timestamp or int(time.time())
     params = {'from_date': timestamp}
     try:
         homework_statuses = requests.get(
@@ -107,10 +106,10 @@ def main():
     current_status = ''
     current_error = ''
     while True:
-        current_timestamp = int(time.time())
         try:
             response = get_api_answer(current_timestamp)
             homework = check_response(response)
+            current_timestamp = response.get('current_date', current_timestamp)
             if not len(homework):
                 logger.info('Статус не обновлен')
                 continue
